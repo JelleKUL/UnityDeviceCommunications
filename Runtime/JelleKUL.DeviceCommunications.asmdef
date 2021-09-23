@@ -1,5 +1,5 @@
 {
-    "name": "JelleKUL.StreamSocketServer",
+    "name": "JelleKUL.DeviceCommunications",
     "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
