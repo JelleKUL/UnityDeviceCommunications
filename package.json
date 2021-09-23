@@ -1,0 +1,17 @@
+{
+  "name": "com.jellekul.device-communications",
+  "version": "0.0.1",
+  "displayName": "Device Communications",
+  "description": "different protocols to connect 2 devices",
+  "keywords": [
+    "mesh",
+    "georeference",
+    "alignment"
+  ],
+  "author": {
+    "name": "Jelle Vermandere",
+    "email": "jelle.vermandere@kuleuven.be",
+    "url": "http://www.jellever.be"
+  },
+  "type": "tool"
+}
