@@ -30,6 +30,7 @@ public class UnityHttpListener : MonoBehaviour
 		listener.Prefixes.Add("http://127.0.0.1:" + httpPort + "/");
 		listener.Prefixes.Add("http://" + IPLogger.GetLocalIPv4() + ":" + httpPort + "/");
 		listener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;
+		
 		listener.Start();
 
 		listenerThread = new Thread(startListener);
@@ -68,6 +69,14 @@ public class UnityHttpListener : MonoBehaviour
 		// Obtain a response object.
 		HttpListenerResponse response = context.Response;
 
+		if (context.Request.HttpMethod == "OPTIONS")
+		{
+			response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+			response.AddHeader("Access-Control-Allow-Methods", "GET, POST");
+			response.AddHeader("Access-Control-Max-Age", "1728000");
+		}
+		response.AppendHeader("Access-Control-Allow-Origin", "*");
+
 		// Construct a response.
 		string responseString = "<HTML><BODY> Hello from the string!</BODY></HTML>";
 		if (htmlResponseFile != null)
@@ -93,6 +102,8 @@ public class UnityHttpListener : MonoBehaviour
 								context.Request.ContentEncoding).ReadToEnd();
 			Debug.Log(data_text);
 		}
+
+		
 
 		context.Response.Close();
 	}

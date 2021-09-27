@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <body>
-
+  <h1>Position Sender</h1>
+  <label for="ipAdress">Hololens IP adress:</label>
+  <input type="text" id="ipAdress" name="ipAdress" value= "192.168.0.139:1234">
 <p>Click the button to get your coordinates.</p>
 
 <button onclick="getLocation()">Try It</button>
+<button onclick="SendGetRequest()">Send Request</button>
 
 <p id="demo"></p>
 
 <script>
 var x = document.getElementById("demo");
+var geoLocation;
 
 function getLocation() {
   if (navigator.geolocation) {
@@ -20,11 +24,22 @@ function getLocation() {
 }
 
 function showPosition(position) {
+
+  geoLocation = position;
+
   x.innerHTML = "Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude+
   "<br>Altitude: " + position.coords.altitude+
   "<br>Accuracy: " + position.coords.accuracy;
 }
+
+function SendGetRequest(){
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "http://" + document.getElementById('ipAdress').value + "/" + position.coords.latitude, true);
+            xhttp.send();
+
+        };
 </script>
 
 </body>
